@@ -1,0 +1,164 @@
+html {
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #000000 url('../img/halloween_bg.jpg'); /* Background pattern; stole it from google */
+	font-family: 'Coda', cursive;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+h1 {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
+
+
+h1, .score-panel {
+	background: rgb(104, 104, 104, 0.75);
+	border-radius: 5px;
+	padding: 5px;
+}
+
+/*
+* Styles for the deck of cards
+*/
+
+.deck {
+	width: 660px;
+	min-height: 680px;
+	background: linear-gradient(160deg, #939999 0%, #c45f00 100%);
+	padding: 32px;
+	border-radius: 10px;
+	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 0 3em;
+}
+
+.deck .card {
+	height: 125px;
+	width: 125px;
+	background: #2e3d49;
+	font-size: 0;
+	color: #ffffff;
+	border-radius: 8px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+	transform: rotateY(0);
+	background: #8f8f8f;
+	cursor: default;
+	animation-name: onOpen;
+	animation-duration: 1s;
+}
+
+.deck .card.show {
+	font-size: 33px;
+}
+
+.deck .card.match {
+	cursor: default;
+	background: orangered;
+	font-size: 33px;
+	animation-name: onMatch;
+	animation-duration: .5s;
+}
+
+/*
+* Styles for the Score Panel
+*/
+
+.score-panel {
+	text-align: left;
+	width: 345px;
+	margin-bottom: 10px;
+}
+
+.score-panel .stars {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+	list-style: none;
+	display: inline-block;
+}
+
+.score-panel .restart {
+	float: right;
+	cursor: pointer;
+}
+
+.fa-star {
+	color: black;
+}
+
+.card {
+	animation-name: onFlip;
+	animation-duration: .5s;
+}
+
+@keyframes onOpen {
+	0% {
+		transform: rotateY(0deg);
+		font-size: 0;
+	}
+	100% {
+		transform: rotateY(360deg);
+		font-size: 33px;
+	}
+}
+
+@keyframes onMatch {
+	0% {
+		background: #8f8f8f;
+		transform: translate(-25px);
+	}
+
+	25%{transform: translate(25px);}
+
+	50%{transform: translate(-25px);}
+
+	70%{transform: translate(25px);}
+
+	100%{
+		background: orangered;
+		transform: translate(0px);
+		transform: rotateX(0deg)
+	}
+}
+
+@keyframes onFlip{
+	0% {transform: rotateY(0deg)}
+	100% {transform: rotateY(360deg);}
+}
